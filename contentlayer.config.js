@@ -6,20 +6,41 @@ import remarkGfm from 'remark-gfm'
 
 const Blog = defineDocumentType(() => ({
     name: 'Blog',
-    filePathPattern: `**/*.mdx`,
+    filePathPattern: `blog/**/*.mdx`,
     contentType: 'mdx',
     fields: {
         title: { type: 'string', required: true },
         date: { type: 'date', required: true },
     },
     computedFields: {
-        url: { type: 'string', resolve: (doc) => `/sss/${doc._raw.flattenedPath}` },
+        url: { type: 'string', resolve: (doc) => `/${doc._raw.flattenedPath}` },
     },
 }))
 
+const Authors = defineDocumentType(() => ({
+    name: 'Authors',
+    filePathPattern: `authors/**/*.mdx`,
+    contentType: 'mdx',
+    fields: {
+        name: { type: 'string', required: true },
+        avatar: { type: 'string' },
+        occupation: { type: 'string' },
+        company: { type: 'string' },
+        email: { type: 'string' },
+        twitter: { type: 'string' },
+        linkedin: { type: 'string' },
+        github: { type: 'string' },
+        layout: { type: 'string' },
+    },
+    computedFields: {
+        url: { type: 'string', resolve: (doc) => `/${doc._raw.flattenedPath}` },
+    },
+}))
+
+
 export default makeSource({
     contentDirPath: 'data',
-    documentTypes: [Blog],
+    documentTypes: [Blog, Authors],
     mdx: {
         remarkPlugins: [
             remarkGfm
