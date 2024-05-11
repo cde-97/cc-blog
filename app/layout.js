@@ -1,6 +1,7 @@
 import { Inter } from "next/font/google";
-import clsx from 'clsx'
-import Header from './components/Header'
+import clsx from "clsx";
+import Header from "./components/Header";
+import ThemeProviders from "./components/theme-provider";
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -12,10 +13,21 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
-      <body className={clsx(inter.className,'pl-[calc(100vw-100%)]')}>
-        <Header></Header>
-        {children}
+    <html lang="en" suppressHydrationWarning>
+      <body
+        className={clsx(
+          inter.className,
+          "bg-white pl-[calc(100vw-100%)] text-black antialiased dark:bg-gray-950 dark:text-white"
+        )}
+      >
+        <ThemeProviders>
+          <section className="mx-auto max-w-3xl px-4 sm:px-6 xl:max-w-5xl xl:px-0">
+            <div className="flex h-screen flex-col justify-between font-sans">
+              <Header></Header>
+              <main className="mb-auto">{children}</main>
+            </div>
+          </section>
+        </ThemeProviders>
       </body>
     </html>
   );
