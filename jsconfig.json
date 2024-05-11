@@ -6,8 +6,6 @@
       "contentlayer/generated": ["./.contentlayer/generated"]
     }
   },
-  "include": [
-    "**/*.js",
-    ".contentlayer/generated"
-  ]
+  "include": ["**/*.js", "**/*.json", ".contentlayer/generated"],
+  "exclude": ["node_modules"]
 }

@@ -1,8 +1,7 @@
+import { redirect } from "next/dist/server/api-utils"
+
 const headerNavLinks = [
-    { href: '/', title: 'Home' },
-    { href: '/blog', title: 'Blog' },
-    { href: '/tags', title: 'Tags' },
-    { href: '/projects', title: 'Projects' },
+    { href: '/', title: 'Blog' },
     { href: '/about', title: 'About' },
 ]
 
